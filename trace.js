@@ -13,6 +13,7 @@ let targets = [];
 let marker = null;
 
 let yScroll = 0;
+let score = 0;
 
 class Circle {
     constructor(xStart, yStart) {
@@ -54,6 +55,9 @@ class Target extends Circle {
         this.hit =    this.x < marker.x + TARGET_RADIUS*2           && this.x > marker.x - TARGET_RADIUS*2 
                    && this.y < marker.y + TARGET_RADIUS*2 + yScroll && this.y > marker.y - TARGET_RADIUS*2 + yScroll
 
+        if (this.hit)
+            score += 1;
+
     }
 
 }
@@ -83,10 +87,13 @@ function init() {
     }
     marker = new Marker(0, canvas.height/2);
     
+    ctx.font = "24px Arial";
     setInterval(function() {
     
         yScroll += SCROLL_SPEED;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "blue";
+        ctx.fillText(`${score} / ${NUMBER_TARGETS}`, 10, 34);
 
         marker.draw();
 
