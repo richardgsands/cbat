@@ -1,6 +1,6 @@
 console.log("hello there 1");
 
-const NUMBER_TARGETS = 10;
+const NUMBER_TARGETS = 1000;
 const TARGET_RADIUS = 5;
 const SCROLL_SPEED = 5;
 const FPS = 25;
@@ -77,12 +77,16 @@ class Marker extends Circle {
 
 function init() {
     
+    let lastX = 0;
     for (let i=0; i<NUMBER_TARGETS; ++i) {
 
-        let xStart = 0;
-        let yStart = canvas.height/2 + i*20
-        
-        targets.push(new Target(xStart, yStart));
+        // y position is regular
+        let y = canvas.height/2 + i*20
+
+        let x = lastX + Math.round( Math.random() * 5 );
+        lastX = x;
+
+        targets.push(new Target(x, y));
     
     }
     marker = new Marker(0, canvas.height/2);
