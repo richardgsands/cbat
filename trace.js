@@ -38,10 +38,22 @@ class Circle {
 }
 
 class Target extends Circle {
+    hit = false;
 
     fill() {
-        ctx.fillStyle = "lightblue"
+        ctx.fillStyle = this.hit ? "blue" : "lightblue";
         ctx.fill();
+    }
+
+    checkIfHit() {
+        if (this.hit)
+            // we know target has been hit, no need to check again
+            return
+
+        // check to see if target is coinciding with marker
+        this.hit =    this.x < marker.x + TARGET_RADIUS*2           && this.x > marker.x - TARGET_RADIUS*2 
+                   && this.y < marker.y + TARGET_RADIUS*2 + yScroll && this.y > marker.y - TARGET_RADIUS*2 + yScroll
+
     }
 
 }
@@ -75,11 +87,13 @@ function init() {
     
         yScroll += SCROLL_SPEED;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
-        targets.forEach((t) => {
-            t.draw()
-        })
 
         marker.draw();
+
+        targets.forEach((t) => {
+            t.checkIfHit()
+            t.draw()
+        })
 
     }, 1000/FPS);
 
