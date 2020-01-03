@@ -5,6 +5,8 @@ const TARGET_RADIUS = 5;
 const SCROLL_SPEED = 5;
 const FPS = 25;
 const MARKER_SPEED = 5;
+const TARGET_X_VAR = 10;
+const X_MARGIN = 50;
 
 let canvas = document.getElementById('game-canvas');
 let ctx = canvas.getContext('2d');
@@ -83,11 +85,23 @@ function init() {
         // y position is regular
         let y = canvas.height/2 + i*20
 
-        let x = lastX + Math.round( Math.random() * 5 );
-        lastX = x;
+        // x varies
+        let x;
+
+        let delta = Math.round( Math.random() * TARGET_X_VAR );
+
+        if ( lastX < -(canvas.width/2-X_MARGIN) )
+            // too far left
+            x = lastX + Math.abs(delta);
+        else if ( lastX > (canvas.width/2-X_MARGIN) )
+            // too far right
+            x = lastX - Math.abs(delta);
+        else
+            // fine to go either way (and delta is signed)
+            x = lastX + delta;
 
         targets.push(new Target(x, y));
-    
+        lastX = x;
     }
     marker = new Marker(0, canvas.height/2);
     
