@@ -1,11 +1,12 @@
 console.log("hello there 1");
 
 const NUMBER_TARGETS = 200;
-const TARGET_RADIUS = 5;
 const SCROLL_SPEED = 5;
 const FPS = 25;
 const MARKER_SPEED = 5;
+const TARGET_RADIUS = 10;
 const TARGET_X_VAR = 10;
+const TARGET_Y_INT = 40;
 const X_MARGIN = 50;
 
 let canvas = document.getElementById('game-canvas');
@@ -83,7 +84,7 @@ function init() {
     for (let i=0; i<NUMBER_TARGETS; ++i) {
 
         // y position is regular
-        let y = canvas.height/2 + i*20
+        let y = canvas.height/2 + i*TARGET_Y_INT
 
         // x varies
         let x;
