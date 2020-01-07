@@ -169,7 +169,7 @@ function handleOrientation(event) {
     output.innerHTML  = "x : " + x + "\n";
     output.innerHTML += "y : " + y + "\n";  
 
-    marker.x += Math.round( y * MARKER_SPEED * 0.1 );
+    marker.x += Math.round( y * MARKER_SPEED * 1 );
 
 }
 window.addEventListener('deviceorientation', handleOrientation);
