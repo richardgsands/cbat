@@ -1,13 +1,15 @@
 console.log("hello there 1");
 
 const NUMBER_TARGETS = 200;
-const SCROLL_SPEED = 5;
 const FPS = 25;
-const MARKER_SPEED = 5;
 const TARGET_RADIUS = 10;
 const TARGET_X_VAR = 10;
 const TARGET_Y_INT = 40;
 const X_MARGIN = 50;
+
+var SCROLL_SPEED = 5;
+var MARKER_SPEED = 5;
+
 
 let canvas = document.getElementById('game-canvas');
 let ctx = canvas.getContext('2d');
@@ -170,8 +172,17 @@ function handleOrientation(event) {
     output.innerHTML  = "x : " + x + "\n";
     output.innerHTML += "y : " + y + "\n";  
 
-    marker.x += Math.round( y * MARKER_SPEED * 1 );
+    marker.x += Math.round( y * MARKER_SPEED * 0.1 );
 
 }
 window.addEventListener('deviceorientation', handleOrientation);
   
+
+// sliders
+document.getElementById("slider-speed").addEventListener('change', (event) => {
+    SCROLL_SPEED = parseInt(event.currentTarget.value);
+});
+
+document.getElementById("slider-gain").addEventListener('change', (event) => {
+    MARKER_SPEED = parseInt(event.currentTarget.value);
+});
