@@ -3,7 +3,7 @@ console.log("hello there 1");
 const NUMBER_TARGETS = 200;
 const FPS = 25;
 const TARGET_RADIUS = 10;
-const TARGET_X_VAR = 10;
+const TARGET_X_VAR = 20;
 const TARGET_Y_INT = 40;
 const X_MARGIN = 50;
 
@@ -83,6 +83,8 @@ class Marker extends Circle {
 function init() {
     
     let lastX = 0;
+    let segmentCounter = 0;
+    let direction = 1;
     for (let i=0; i<NUMBER_TARGETS; ++i) {
 
         // y position is regular
@@ -94,9 +96,15 @@ function init() {
         let delta = Math.abs( Math.round( Math.random() * TARGET_X_VAR ) );
         let halfWidth = canvas.width/2-X_MARGIN;
 
+        if ( segmentCounter <= 0 ) {
+            direction = -direction
+            segmentCounter = Math.round( Math.random() * 50 );
+        }
+        --segmentCounter;
+
         // weight direction towards centre
-        let direction = (lastX > 0) ? -1 : 1;
-        if ( Math.random() > 0.5*Math.abs(lastX)/halfWidth ) direction = -direction;
+        //let direction = (lastX > 0) ? -1 : 1;
+        //if ( Math.random() > 0.5*Math.abs(lastX)/halfWidth ) direction = -direction;
 
         if ( lastX < -halfWidth )
             // too far left
