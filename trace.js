@@ -1,6 +1,6 @@
 console.log("hello there 1");
 
-const NUMBER_TARGETS = 1000;
+const NUMBER_TARGETS = 200;
 const TARGET_RADIUS = 5;
 const SCROLL_SPEED = 5;
 const FPS = 25;
@@ -108,6 +108,10 @@ function init() {
     ctx.font = "24px Arial";
     setInterval(function() {
     
+        // check limits of x
+        if (marker.x < -canvas.width/2) marker.x = -canvas.width/2;
+        if (marker.x >  canvas.width/2) marker.x =  canvas.width/2;
+
         yScroll += SCROLL_SPEED;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = "blue";
@@ -124,6 +128,8 @@ function init() {
 
 }
 init();
+
+// arrow keys
 
 document.addEventListener("keydown", event => {
     if (event.isComposing || event.keyCode === 229) {
@@ -142,3 +148,29 @@ document.addEventListener("keydown", event => {
     }
 
 });
+
+// orientation sensor
+let output = document.getElementById('output');
+output.innerHTML = "hello";
+
+function handleOrientation(event) {
+    var x = event.beta;  // In degree in the range [-180,180]
+    var y = event.gamma; // In degree in the range [-90,90]
+    
+    // Because we don't want to have the device upside down
+    // We constrain the x value to the range [-90,90]
+    if (x >  90) { x =  90};
+    if (x < -90) { x = -90};
+
+    // constrain y to -30 to 30
+    if (y >  30) { y =  30};
+    if (y < -30) { y = -30};
+
+    output.innerHTML  = "x : " + x + "\n";
+    output.innerHTML += "y : " + y + "\n";  
+
+    marker.x += Math.round( y * MARKER_SPEED * 0.01 );
+
+}
+window.addEventListener('deviceorientation', handleOrientation);
+  
