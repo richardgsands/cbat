@@ -7,7 +7,7 @@ const TARGET_X_VAR = 20;
 const TARGET_Y_INT = 40;
 const X_MARGIN = 50;
 
-var SCROLL_SPEED = 100;
+var SCROLL_SPEED = 10;
 var MARKER_SPEED = 5;
 
 
