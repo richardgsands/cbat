@@ -7,7 +7,7 @@ const TARGET_X_VAR = 20;
 const TARGET_Y_INT = 40;
 const X_MARGIN = 50;
 
-var SCROLL_SPEED = 5;
+var SCROLL_SPEED = 100;
 var MARKER_SPEED = 5;
 
 
@@ -97,8 +97,16 @@ function init() {
         let halfWidth = canvas.width/2-X_MARGIN;
 
         if ( segmentCounter <= 0 ) {
-            direction = -direction
-            segmentCounter = Math.round( Math.random() * 50 );
+            // weight direction towards centre
+            if ( Math.random() > 0.7 ) {
+                // toggle direction
+                direction = -direction
+            } else {
+                // go towards centre
+                direction = ( lastX > 0 ) ? -1 : 1
+            }
+            
+            segmentCounter = Math.round( Math.random() * 30 );
         }
         --segmentCounter;
 
