@@ -2,19 +2,26 @@
     <head>
         <meta http-equiv="Pragma" content="no-cache">
         <link href='https://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
-        <!-- <link href='trace.css' rel='stylesheet' type='text/css'> -->
+        <link href='trace.css' rel='stylesheet' type='text/css'>
     </head>
     <body>
         <div id="output" style="display: none">XXX</div>
         <canvas id="game-canvas" width="800" height="1400" style="border:1px solid #d3d3d3;">
             Your browser does not support the HTML5 canvas tag.
         </canvas>
-        <div>
-            <input id="slider-speed" type="range" min="1" max="10" value="5"> Speed
+        <div class="full-width">
+            Speed
+            <input id="slider-speed" type="range" min="1" max="10" value="5">
         </div>
-        <div>
-            <input id="slider-gain" type="range" min="1" max="10" value="5"> Gain
+        <div class="full-width">
+            Gain
+            <input id="slider-gain" type="range" min="1" max="10" value="5">
+        </div>
+        <div class="full-width">
+            <button id="btn-restart">Restart</button>
         </div>
         <script src="trace3.js"></script>
     </body>
 </html>
+
+

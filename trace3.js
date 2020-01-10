@@ -14,11 +14,10 @@ var MARKER_SPEED = 5;
 let canvas = document.getElementById('game-canvas');
 let ctx = canvas.getContext('2d');
 
-let targets = [];
-let marker = null;
-
-let yScroll = 0;
-let score = 0;
+let targets;
+let marker;
+let yScroll;
+let score;
 
 class Circle {
     constructor(xStart, yStart) {
@@ -81,6 +80,11 @@ class Marker extends Circle {
 }
 
 function init() {
+
+    score = 0;
+    yScroll = 0;
+    targets = [];
+
     
     let lastX = 0;
     let segmentCounter = 0;
@@ -206,4 +210,8 @@ document.getElementById("slider-speed").addEventListener('change', (event) => {
 
 document.getElementById("slider-gain").addEventListener('change', (event) => {
     MARKER_SPEED = parseInt(event.currentTarget.value);
+});
+
+document.getElementById("btn-restart").addEventListener('click', (event) => {
+    init();
 });
