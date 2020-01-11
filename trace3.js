@@ -133,29 +133,29 @@ function init() {
     }
     marker = new Marker(0, canvas.height/2);
     
-    ctx.font = "24px Arial";
-    setInterval(function() {
-    
-        // check limits of x
-        if (marker.x < -canvas.width/2) marker.x = -canvas.width/2;
-        if (marker.x >  canvas.width/2) marker.x =  canvas.width/2;
-
-        yScroll += SCROLL_SPEED;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "blue";
-        ctx.fillText(`${score} / ${NUMBER_TARGETS}`, 10, 34);
-
-        marker.draw();
-
-        targets.forEach((t) => {
-            t.checkIfHit()
-            t.draw()
-        })
-
-    }, 1000/FPS);
-
 }
 init();
+ctx.font = "24px Arial";
+
+setInterval(function() {
+
+	// check limits of x
+	if (marker.x < -canvas.width/2) marker.x = -canvas.width/2;
+	if (marker.x >  canvas.width/2) marker.x =  canvas.width/2;
+
+	yScroll += SCROLL_SPEED;
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	ctx.fillStyle = "blue";
+	ctx.fillText(`${score} / ${NUMBER_TARGETS}`, 10, 34);
+
+	marker.draw();
+
+	targets.forEach((t) => {
+	    t.checkIfHit()
+	    t.draw()
+	})
+
+}, 1000/FPS);
 
 // arrow keys
 
