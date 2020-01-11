@@ -206,10 +206,12 @@ window.addEventListener('deviceorientation', handleOrientation);
 // sliders
 document.getElementById("slider-speed").addEventListener('change', (event) => {
     SCROLL_SPEED = parseInt(event.currentTarget.value);
+    document.getElementById('slider-speed-disp').innerHTML = SCROLL_SPEED;
 });
 
 document.getElementById("slider-gain").addEventListener('change', (event) => {
     MARKER_SPEED = parseInt(event.currentTarget.value);
+    document.getElementById('slider-gain-disp').innerHTML = MARKER_SPEED;
 });
 
 document.getElementById("btn-restart").addEventListener('click', (event) => {
